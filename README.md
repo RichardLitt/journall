@@ -1,4 +1,4 @@
-journall-public
-===============
+journall
+========
 
-A way of creating a journal entry file a day
+A private note repo
