@@ -1,6 +1,6 @@
 {
   "name": "journall",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A package for creating a journal entry a day in markdown",
   "main": "index.js",
   "dependencies": {
