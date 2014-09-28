@@ -17,7 +17,7 @@ walker.on('file', function(root, stat, next) {
 walker.on('end', function() {
   if (!_.contains(files, today)) {
     // Create file with simple header
-    fs.writeFile(__dirname + "/entries/" + today, "#" + moment().format('YYYY MMMM Do'), function(err) {
+    fs.writeFile(__dirname + "/entries/" + today, "# " + moment().format('YYYY MMMM Do'), function(err) {
       if(err) {
         console.log(err);
       } else {
