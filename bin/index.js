@@ -50,9 +50,16 @@ walker.on('end', function() {
   } else {
 
     // Add the optional title at the end of the file
-    if (argv.t && typeof argv.t === 'string' ||
-      argv._[0] && typeof argv._[0] === 'string') {
-      header = '\n\n## ' + (argv.t || argv._[0]) + '\n'
+    if (argv.t && typeof argv.t === 'string') {
+      header = '\n\n## ' + (argv.t) + '\n'
+
+      fs.appendFile(journalFolder + '/' + filename, header, function(err) {
+        if (err) console.log('Writing the new header did not work', err)
+      })
+    } else if (argv._ && _(argv._).every( function(arg) {
+      return _.isString(arg)
+    })) {
+      header = '\n\n## ' + (argv._.join(' ')) + '\n'
 
       fs.appendFile(journalFolder + '/' + filename, header, function(err) {
         if (err) console.log('Writing the new header did not work', err)
