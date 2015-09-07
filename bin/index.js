@@ -10,12 +10,14 @@ var shell = require('shelljs')
 var argv = require('minimist')(process.argv.slice(2), {
     alias: {
         t: 'title',
+        p: 'program'
     }
 })
 
 var journalFolder = (path.resolve(process.env['JOURNALL']))
 var files  = []
 var filename = moment().format('YYYY.MM.DD') + '.md'
+var program = argv.p || process.env['JOURNALL_PROGRAM']
 
 // Read all files
 var walker  = walk.walk(journalFolder, { followLinks: false })
@@ -38,12 +40,13 @@ walker.on('end', function() {
     }
 
     // Create file with simple header
-    fs.writeFile(journalFolder + '/' + filename, header, function(err) {
-      if (err) { console.log(err) }
-      else {
+    fs.writeFile(journalFolder + '/' + filename, header, function (err) {
+      if (err) {
+        console.log(err)
+      } else {
         // Open file
-        console.log("Log entered. Opening page.")
-        shell.exec('open -a "iA Writer" ' + journalFolder + '/' + filename,
+        console.log('Log entered. Opening page.')
+        shell.exec('open -a "' + program + '"' + journalFolder + '/' + filename,
           {silent: false}).output
       }
     })
@@ -68,7 +71,7 @@ walker.on('end', function() {
 
     // Open file
     console.log('Date already exists! Opening page.')
-    shell.exec('open -a "iA Writer" ' + journalFolder + '/' + filename,
+    shell.exec('open -a "' + program + '" ' + journalFolder + '/' + filename,
       {silent: false}).output
   }
 })

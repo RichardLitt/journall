@@ -7,11 +7,15 @@ journall
 
 `npm install -g journall`
 
-Then, set your journal directory by adding the env var `JOURNALL` to your `.bash_profile`.
+Then, you need to set two environment variables:
+
+ * `JOURNALL`: The directory where files should be stored.  
+ * `JOURNALL_PROGRAM`: The name of the program which will be opened in the shell and used to edit the file.  
 
 ```sh
 # Append to the end of the file
 $ echo "export JOURNALL=/Users/richard/Documents/journall" >> ~/.bash_profile
+$ echo "export JOURNALL_PROGRAM='Sublime Text'" >> ~/.bash_profile
 
 # Update shell
 $ source ~/.bash_profile
@@ -25,7 +29,7 @@ Journall will use the `Documents/journall/` folder, and save a file titled with 
 
 The idea is that typing `journall` automatically constructs the file for you, so you don't have to build one yourself, and so you always have a markdown file you can write anything in that is persistently saved so you don't end up with hundreds of random files in a folder called 'journal'.
 
-Natively, this package supports [iA Writer](http://www.iawriter.com/mac/), which is the best Markdown editor I've found for OS X. That will have to be installed for this to work. This package does not work on Windows. 
+You can set the editor using the `-p` or `--program` flag, which will override your env var. I suggest [iA Writer](http://www.iawriter.com/mac/), the best Markdown editor I've found for OS X.
 
 From then on, simply type `$ journall` and today's date should open.
 
