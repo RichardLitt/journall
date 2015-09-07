@@ -29,6 +29,14 @@ Natively, this package supports [iA Writer](http://www.iawriter.com/mac/), which
 
 From then on, simply type `$ journall` and today's date should open.
 
+### Alfred
+
+If you're using and Alfred 2 workflow with this, note that Alfred doesn't source your `.bash_profile`. To get around this, use a workflow with the following bash script, where the `journall` path is whatever `which journall` spits out:
+
+```sh
+JOURNALL='/Users/richard/Documents/journall/' /usr/local/bin/node /Users/richard/.nvm/versions/node/v0.12.0/bin/journall
+```
+
 ## Contributing
 
 Feel free. 
