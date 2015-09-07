@@ -13,7 +13,7 @@ var argv = require('minimist')(process.argv.slice(2), {
     }
 })
 
-var journalFolder = (path.resolve(process.env['HOME'], 'Documents/journall'))
+var journalFolder = (path.resolve(process.env['JOURNALL']))
 var files  = []
 var filename = moment().format('YYYY.MM.DD') + '.md'
 

@@ -7,6 +7,16 @@ journall
 
 `npm install -g journall`
 
+Then, set your journal directory by adding the env var `JOURNALL` to your `.bash_profile`.
+
+```sh
+# Append to the end of the file
+$ echo "export JOURNALL=/Users/richard/Documents/journall" >> ~/.bash_profile
+
+# Update shell
+$ source ~/.bash_profile
+```
+
 ## Usage
 
 `journall 'Title of post'`
