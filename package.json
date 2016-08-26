@@ -4,13 +4,11 @@
   "description": "A package for creating a journal entry a day in markdown",
   "bin": "bin/index.js",
   "dependencies": {
-    "fs": "^0.0.2",
     "minimist": "^1.1.0",
     "moment": "^2.8.3",
     "shelljs": "^0.3.0",
     "underscore": "^1.7.0",
-    "walk": "^2.3.3",
-    "path": "^0.11.14"
+    "walk": "^2.3.3"
   },
   "devDependencies": {},
   "scripts": {
