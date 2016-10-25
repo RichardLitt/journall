@@ -1,6 +1,6 @@
 {
   "name": "journall",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "A package for creating a journal entry a day in markdown",
   "bin": "bin/index.js",
   "dependencies": {
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/RichardLitt/journall",
   "coordinates": [
-    42.3957615,
-    -71.1218201
+    45.5192093,
+    -73.5789064
   ]
 }
