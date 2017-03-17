@@ -42,7 +42,7 @@ From then on, simply type `$ journall` and today's date should open.
 If you're using and [Alfred 2](https://www.alfredapp.com/) workflow with this, note that Alfred doesn't source your `.bash_profile`. To get around this, use a workflow with the following bash script, where the `journall` path is whatever `which journall` spits out:
 
 ```sh
-/usr/local/bin/node /Users/richard/.nvm/versions/node/v6.4.0/bin/journall {query} --path='/Users/richard/src/journal/' -p 'iA Writer'
+/usr/local/bin/node /Users/richard/.nvm/versions/node/v7.5.0/bin/journall {query} --path='/Users/richard/src/journal/' -p 'iA Writer'
 ```
 
 ## Contributing

@@ -33,8 +33,6 @@ const program = cli.flags.program || process.env['JOURNALL_PROGRAM']
 const title = cli.flags.title || cli.input
 const walker = walk.walk(journalFolder, { followLinks: false })
 
-console.log(cli.flags)
-
 function openFile (text) {
   console.log(`${text} Opening page.`)
   opn(fullPath, {app: program})
