@@ -11,7 +11,7 @@ const cli = require('meow')([`
     $ journall <input>
 
   Options
-    -t, --title A token
+    -t, --title A title you want as a heading
     -p, --program The program to open with
     --path The path to the folder (Can be specifed with $JOURNALL)
 
@@ -20,7 +20,7 @@ const cli = require('meow')([`
     # Will open a document with test
 `], {
   alias: {
-    t: 'token',
+    t: 'title',
     p: 'program'
   }
 })
@@ -60,7 +60,7 @@ walker.on('end', function () {
     }
 
     // Create file with simple header
-    fs.writeFile(fullPath, header, (err) => {
+    fs.writeFile(fullPath, header, function (err) {
       if (err) {
         throw new Error(err)
       }
@@ -68,7 +68,7 @@ walker.on('end', function () {
     })
   } else if (title) {
     // Add the optional title at the end of the file
-    fs.appendFile(fullPath, wrapTitle(title), (err) => {
+    fs.appendFile(fullPath, wrapTitle(title), function (err) {
       if (err) {
         throw new Error('Writing the new header did not work', err)
       }
