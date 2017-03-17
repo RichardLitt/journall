@@ -2,7 +2,7 @@
   "name": "journall",
   "version": "2.0.4",
   "description": "A package for creating a journal entry a day in markdown",
-  "bin": "bin/index.js",
+  "bin": "index.js",
   "dependencies": {
     "minimist": "^1.1.0",
     "moment": "^2.8.3",
