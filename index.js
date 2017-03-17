@@ -5,7 +5,7 @@ const walk = require('walk')
 const moment = require('moment')
 const _ = require('underscore')
 const path = require('path')
-const shell = require('shelljs')
+const opn = require('opn')
 const cli = require('meow')([`
   Usage
     $ journall <input>
@@ -25,33 +25,26 @@ const cli = require('meow')([`
   }
 })
 
-var journalFolder = cli.flags.path || path.resolve(process.env['JOURNALL'])
-var files = []
-var filename = moment().format('YYYY.MM.DD') + '.md'
-var program = cli.flags.program || process.env['JOURNALL_PROGRAM']
+const journalFolder = cli.flags.path || path.resolve(process.env['JOURNALL'])
+const files = []
+const filename = moment().format('YYYY.MM.DD') + '.md'
+const fullPath = path.resolve(journalFolder + '/' + filename)
+const program = cli.flags.program || process.env['JOURNALL_PROGRAM']
 const title = cli.flags.title || cli.input
+const walker = walk.walk(journalFolder, { followLinks: false })
+
+console.log(cli.flags)
 
 function openFile (text) {
-  console.log(text + ' Opening page.')
-  shell.exec('open -a "' + program + '" ' + journalFolder + '/' + filename,
-    {silent: false}).output
+  console.log(`${text} Opening page.`)
+  opn(fullPath, {app: program})
+  process.exit(1)
 }
 
 function wrapTitle (title) {
   return `\n\n## ${title}\n`
 }
 
-function addCustomHeader (title) {
-  return fs.appendFile(path.resolve(journalFolder + '/' + filename), wrapTitle(title), function (err) {
-    if (err) {
-      console.log('Writing the new header did not work', err)
-    }
-    openFile('Date already exists.')
-  })
-}
-
-// Read all files
-var walker = walk.walk(journalFolder, { followLinks: false })
 walker.on('file', function (root, stat, next) {
   files.push(stat.name)
   next()
@@ -59,6 +52,7 @@ walker.on('file', function (root, stat, next) {
 
 walker.on('end', function () {
   var header = `# ${moment().format('YYYY MMMM Do')}\n`
+
   if (!_.contains(files, filename)) {
     // Add the date and an optional title to the header
     if (title) {
@@ -66,15 +60,21 @@ walker.on('end', function () {
     }
 
     // Create file with simple header
-    fs.writeFile(path.resolve(journalFolder + '/' + filename), header, function (err) {
+    fs.writeFile(fullPath, header, (err) => {
       if (err) {
-        return new Error(err)
+        throw new Error(err)
       }
-
       openFile('Log entered.')
     })
-  } else {
+  } else if (title) {
     // Add the optional title at the end of the file
-    (title) ? addCustomHeader(title) : openFile('Date already exists.')
+    fs.appendFile(fullPath, wrapTitle(title), (err) => {
+      if (err) {
+        throw new Error('Writing the new header did not work', err)
+      }
+      openFile('Date already exists.')
+    })
+  } else {
+    openFile('Date already exists.')
   }
 })
