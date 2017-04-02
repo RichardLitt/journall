@@ -35,7 +35,7 @@ const walker = walk.walk(journalFolder, { followLinks: false })
 
 function openFile (text) {
   console.log(`${text} Opening page.`)
-  opn(fullPath, {app: program})
+  opn(fullPath, {app: program, wait: false})
   process.exit(1)
 }
 
