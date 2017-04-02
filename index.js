@@ -40,7 +40,7 @@ function openFile (text) {
 }
 
 function wrapTitle (title) {
-  return `\n\n## ${title}\n`
+  return `\n## ${title}\n`
 }
 
 walker.on('file', function (root, stat, next) {
@@ -49,11 +49,11 @@ walker.on('file', function (root, stat, next) {
 })
 
 walker.on('end', function () {
-  var header = `# ${moment().format('YYYY MMMM Do')}\n`
+  var header = `# ${moment().format('YYYY MMMM Do')}\n\n`
 
   if (!_.contains(files, filename)) {
     // Add the date and an optional title to the header
-    if (title) {
+    if (title && title.length !== 0) {
       header += wrapTitle(title)
     }
 
