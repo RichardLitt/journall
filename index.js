@@ -25,6 +25,11 @@ const cli = require('meow')([`
   }
 })
 
+if (!cli.flags.path && !process.env['JOURNALL']) {
+  console.log('ERROR: You must either specify --path or set $JOURNALL to a path.')
+  cli.showHelp(1)
+}
+
 const journalFolder = cli.flags.path || path.resolve(process.env['JOURNALL'])
 const files = []
 const filename = moment().format('YYYY.MM.DD') + '.md'
