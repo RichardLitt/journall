@@ -5,6 +5,7 @@ const walk = require('walk')
 const moment = require('moment')
 const _ = require('underscore')
 const path = require('path')
+const mkdirp = require('mkdirp')
 const opn = require('opn')
 const cli = require('meow')([`
   Usage
@@ -61,6 +62,9 @@ walker.on('end', function () {
     if (title && title.length !== 0) {
       header += wrapTitle(title)
     }
+
+    // Create the directory if it doesn't exist
+    mkdirp.sync(journalFolder)
 
     // Create file with simple header
     fs.writeFile(fullPath, header, function (err) {
