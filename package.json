@@ -1,7 +1,7 @@
 {
   "name": "journall",
   "version": "3.1.0",
-  "description": "A package for creating a journal entry a day in markdown",
+  "description": "Create a journal entry a day in markdown.",
   "bin": "index.js",
   "dependencies": {
     "editor": "^1.0.0",
@@ -23,7 +23,11 @@
   },
   "keywords": [
     "journal",
-    "diary"
+    "diary",
+    "markdown",
+    "log",
+    "note",
+    "notes"
   ],
   "author": "Richard Littauer <richard.littauer@gmail.com>",
   "license": "MIT",

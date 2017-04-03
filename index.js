@@ -16,11 +16,12 @@ const cli = require('meow')([`
     -t, --title    A title you want as a heading
     -p, --program  The program to open with
     -e, --editor   Open using $EDITOR
-    --path         The path to the folder (Can be specifed with $JOURNALL)
+    --path         The path to the folder (Can be specified with $JOURNALL)
 
   Examples
-    $ get-github-user -t 'Test'
-    # Will open a document with test
+    $ journall --path=/Users/richard/journal
+    Log entered. Opening page.
+    # Will open a document with the day's date
 `], {
   alias: {
     h: 'help',
