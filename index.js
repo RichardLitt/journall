@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const editor = require('editor')
 const fs = require('fs')
 const walk = require('walk')
 const moment = require('moment')
@@ -12,9 +13,10 @@ const cli = require('meow')([`
     $ journall <input>
 
   Options
-    -t, --title A title you want as a heading
-    -p, --program The program to open with
-    --path The path to the folder (Can be specifed with $JOURNALL)
+    -t, --title    A title you want as a heading
+    -p, --program  The program to open with
+    -e, --editor   Open using $EDITOR
+    --path         The path to the folder (Can be specifed with $JOURNALL)
 
   Examples
     $ get-github-user -t 'Test'
@@ -22,7 +24,8 @@ const cli = require('meow')([`
 `], {
   alias: {
     t: 'title',
-    p: 'program'
+    p: 'program',
+    e: 'editor'
   }
 })
 
@@ -41,8 +44,14 @@ const walker = walk.walk(journalFolder, { followLinks: false })
 
 function openFile (text) {
   console.log(`${text} Opening page.`)
-  opn(fullPath, {app: program, wait: false})
-  process.exit(0)
+  if (cli.flags.editor) {
+    editor(fullPath, function () {
+      process.exit(0)
+    })
+  } else {
+    opn(fullPath, {app: program, wait: false})
+    process.exit(0)
+  }
 }
 
 function wrapTitle (title) {

@@ -4,6 +4,7 @@
   "description": "A package for creating a journal entry a day in markdown",
   "bin": "index.js",
   "dependencies": {
+    "editor": "^1.0.0",
     "meow": "^3.7.0",
     "minimist": "^1.1.0",
     "mkdirp": "^0.5.1",
