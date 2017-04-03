@@ -23,6 +23,7 @@ const cli = require('meow')([`
     # Will open a document with test
 `], {
   alias: {
+    h: 'help',
     t: 'title',
     p: 'program',
     e: 'editor'
