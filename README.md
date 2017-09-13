@@ -1,5 +1,7 @@
 # journall
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/RichardLitt/journall.svg)](https://greenkeeper.io/)
+
 > Create a journal entry a day in markdown.
 
 ## Install
